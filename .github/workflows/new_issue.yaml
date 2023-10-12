@@ -1,14 +1,14 @@
 on:
-  issues:
+  release:
     types:
-      - opened
+      - published
 
 jobs:
-  label_issue:
+  add-issue:
     runs-on: ubuntu-latest
     steps:
-      - env:
-          GITHUB_TOKEN: ${{ secrets.MY_TOKEN }}
-          ISSUE_URL: ${{ github.event.issue.html_url }}
-        run: |
-          gh issue edit $ISSUE_URL --add-label "triage"
+    - uses: actions/checkout@v2
+    - name: Add Issue
+      run: |
+        echo "Adding issue to repository..."
+        cat .github/templates/ISSUE_TEMPLATE.md >> $GITHUB_EVENT_PATH
