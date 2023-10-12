@@ -4,8 +4,11 @@ on:
       - published
 
 jobs:
+
   add-issue:
     runs-on: ubuntu-latest
+    permissions:
+      issues: write
     steps:
     - uses: actions/checkout@v2
     - name: Add Issue
